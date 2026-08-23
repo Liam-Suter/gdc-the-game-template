@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://s50dulb4oj00"]
+
+[ext_resource type="Script" uid="uid://c8q2lcjp7oajx" path="res://micro_games/my_game/Scripts/butter_toast.gd" id="1_rw3cs"]
+[ext_resource type="Script" uid="uid://bc0wuehu5qgga" path="res://micro_games/my_game/Scripts/butter.gd" id="2_61xe7"]
+[ext_resource type="Texture2D" uid="uid://bcdomyr3vva5" path="res://main/assets/pfp/dev-chan-pfp.png" id="2_648pp"]
+[ext_resource type="Shader" uid="uid://b374iioygvmpj" path="res://micro_games/my_game/butter_shader.gdshader" id="3_8skc6"]
+[ext_resource type="Texture2D" uid="uid://dc130byrgw6xe" path="res://micro_games/my_game/Assets/0a283fd1-5007-4fc9-92d7-76aabcb8f6e7.jpg" id="3_j1s41"]
+[ext_resource type="Texture2D" uid="uid://bcw7vgye3p114" path="res://micro_games/my_game/Assets/829d3a25-c796-4667-8411-e5d37dbdadfb.jpg" id="4_lseex"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8skc6"]
+shader = ExtResource("3_8skc6")
+shader_parameter/base_texture = ExtResource("3_j1s41")
+shader_parameter/masked_texture = ExtResource("4_lseex")
+
+[sub_resource type="Curve" id="Curve_8skc6"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.9855491, 0.16989732), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="ButterToast" type="Node2D" unique_id=575104083]
+script = ExtResource("1_rw3cs")
+
+[node name="ButterTexture" type="TextureRect" parent="." unique_id=987569277]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_8skc6")
+offset_left = 52.0
+offset_top = 7.0
+offset_right = 752.0
+offset_bottom = 519.0
+mouse_filter = 0
+texture = ExtResource("2_648pp")
+script = ExtResource("2_61xe7")
+mask_size = Vector2i(700, 512)
+
+[node name="ButteredProgress" type="ProgressBar" parent="." unique_id=117573517]
+unique_name_in_owner = true
+offset_left = 768.0
+offset_top = 37.0
+offset_right = 828.0
+offset_bottom = 488.0
+fill_mode = 3
+show_percentage = false
+
+[node name="ButterParticles" type="CPUParticles2D" parent="." unique_id=1887798605]
+unique_name_in_owner = true
+position = Vector2(942, 302)
+amount = 20
+lifetime = 0.42
+explosiveness = 0.01
+emission_shape = 1
+emission_sphere_radius = 19.49
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 27.78
+initial_velocity_max = 116.67
+damping_min = 2.222
+damping_max = 5.556
+angle_min = -24.0
+angle_max = 24.0
+scale_amount_min = 17.67
+scale_amount_max = 23.52
+scale_amount_curve = SubResource("Curve_8skc6")
+color = Color(1, 0.9490196, 0.5647059, 1)
+hue_variation_min = -1.0
+hue_variation_max = 1.0

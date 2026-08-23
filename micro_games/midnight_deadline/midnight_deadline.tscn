@@ -36,14 +36,14 @@ shader_parameter/bottom_right_color = Color(0.192, 0.192, 0.192, 1)
 shader_parameter/border_width = 10.0
 shader_parameter/rect_size = Vector2(1194, 828)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_b5a1j"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6gjl0"]
 shader = ExtResource("5_c8w63")
 shader_parameter/top_left_color = Color(1, 1, 1, 1)
 shader_parameter/bottom_right_color = Color(0.192, 0.192, 0.192, 1)
 shader_parameter/border_width = 10.0
 shader_parameter/rect_size = Vector2(350, 80)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6gjl0"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b5a1j"]
 shader = ExtResource("5_c8w63")
 shader_parameter/top_left_color = Color(1, 1, 1, 1)
 shader_parameter/bottom_right_color = Color(0.192, 0.192, 0.192, 1)
@@ -78,7 +78,6 @@ shader_parameter/vignette_opacity = 0.182000008645
 script = ExtResource("1_3fgaj")
 control_format = 0
 lose_on_timeout = true
-timer_type = 0
 game_duration = 10.0
 post_game_time = 1.75
 
@@ -470,7 +469,7 @@ offset_bottom = 10.0
 mouse_filter = 2
 
 [node name="FileTab" type="ColorRect" parent="UI/Taskbar" unique_id=1682915889]
-material = SubResource("ShaderMaterial_b5a1j")
+material = SubResource("ShaderMaterial_6gjl0")
 layout_mode = 0
 offset_left = 42.0
 offset_top = 21.0
@@ -493,7 +492,7 @@ text = "FILE EXP..."
 vertical_alignment = 1
 
 [node name="BrowserTab" type="ColorRect" parent="UI/Taskbar" unique_id=1287160918]
-material = SubResource("ShaderMaterial_6gjl0")
+material = SubResource("ShaderMaterial_b5a1j")
 layout_mode = 0
 offset_left = 409.0
 offset_top = 21.0

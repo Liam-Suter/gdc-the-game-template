@@ -65,6 +65,8 @@ func _ready() -> void:
 	pivot_offset = size * 0.5
 	resized.connect(func(): pivot_offset = size * 0.5)
 	queue_redraw()
+	print(size)
+	print(global_position)
 
 
 func _process(_delta: float) -> void:
@@ -85,6 +87,7 @@ func _ensure_connected() -> void:
 
 
 func _on_hover_enter() -> void:
+	print("hover")
 	if disabled or Engine.is_editor_hint():
 		return
 	GameSFX.play(self, "res://micro_games/midnight_deadline/Assets/hover.wav", -8.0)

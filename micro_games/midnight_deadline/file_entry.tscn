@@ -1,25 +1,26 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene format=3 uid="uid://bb4fytbd4etbt"]
 
-[ext_resource type="Script" path="res://micro_games/midnight_deadline/Scripts/file_entry.gd" id="1_entry"]
+[ext_resource type="Script" uid="uid://cbc32p4bs86i7" path="res://micro_games/midnight_deadline/Scripts/file_entry.gd" id="1_entry"]
 [ext_resource type="FontFile" uid="uid://k63t7wblivm1" path="res://shared/fonts/BoldsPixels.ttf" id="2_font"]
 
-[node name="FileEntry" type="Control"]
+[node name="FileEntry" type="Control" unique_id=1576404095]
 custom_minimum_size = Vector2(210, 320)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 210.0
 offset_bottom = 320.0
+pivot_offset = Vector2(105, 160)
 mouse_filter = 2
 script = ExtResource("1_entry")
 
-[node name="Thumb" type="TextureRect" parent="."]
+[node name="Thumb" type="TextureRect" parent="." unique_id=1249516392]
 layout_mode = 0
 offset_right = 210.0
 offset_bottom = 210.0
 mouse_filter = 2
 expand_mode = 1
 
-[node name="Caption" type="Label" parent="."]
+[node name="Caption" type="Label" parent="." unique_id=1930631653]
 layout_mode = 0
 offset_left = -10.0
 offset_top = 198.0
