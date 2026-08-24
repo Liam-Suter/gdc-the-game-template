@@ -1,8 +1,9 @@
 [gd_resource type="Resource" script_class="MicroGamePack" format=3 uid="uid://bmwgp1jktvgrp"]
 
 [ext_resource type="Script" uid="uid://dciiueikp53p7" path="res://main/micro_game_info.gd" id="1_skbrk"]
-[ext_resource type="Resource" uid="uid://cmpbtw0tyt2au" path="res://micro_games/my_game/butter_toast.tres" id="2_skbrk"]
+[ext_resource type="Resource" uid="uid://cmpbtw0tyt2au" path="res://micro_games/butter_toast/butter_toast.tres" id="2_skbrk"]
 [ext_resource type="Script" uid="uid://8d8dt0a71t3a" path="res://main/micro_game_pack.gd" id="3_5eyod"]
+
 
 [resource]
 script = ExtResource("3_5eyod")
