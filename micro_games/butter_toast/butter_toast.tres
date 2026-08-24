@@ -1,7 +1,8 @@
 [gd_resource type="Resource" script_class="MicroGameInfo" format=3 uid="uid://cmpbtw0tyt2au"]
 
 [ext_resource type="Script" uid="uid://dciiueikp53p7" path="res://main/micro_game_info.gd" id="1_ch0t1"]
-[ext_resource type="PackedScene" uid="uid://s50dulb4oj00" path="res://micro_games/my_game/butter_toast.tscn" id="1_pv7rw"]
+[ext_resource type="PackedScene" uid="uid://s50dulb4oj00" path="res://micro_games/butter_toast/butter_toast.tscn" id="1_pv7rw"]
+
 
 [resource]
 script = ExtResource("1_ch0t1")

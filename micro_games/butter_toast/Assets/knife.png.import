@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dc130byrgw6xe"
-path="res://.godot/imported/0a283fd1-5007-4fc9-92d7-76aabcb8f6e7.jpg-cce8338f566b0ada5b5b32422574bedc.ctex"
+uid="uid://bhk021u3rri20"
+path="res://.godot/imported/knife.png-3eae5e3c1dd6fc29b7dadd69b831c69e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://micro_games/my_game/Assets/0a283fd1-5007-4fc9-92d7-76aabcb8f6e7.jpg"
-dest_files=["res://.godot/imported/0a283fd1-5007-4fc9-92d7-76aabcb8f6e7.jpg-cce8338f566b0ada5b5b32422574bedc.ctex"]
+source_file="res://micro_games/butter_toast/Assets/knife.png"
+dest_files=["res://.godot/imported/knife.png-3eae5e3c1dd6fc29b7dadd69b831c69e.ctex"]
 
 [params]
 

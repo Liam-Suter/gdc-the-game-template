@@ -1,0 +1,292 @@
+[gd_scene format=3 uid="uid://s50dulb4oj00"]
+
+[ext_resource type="Script" uid="uid://c8q2lcjp7oajx" path="res://micro_games/butter_toast/Scripts/butter_toast.gd" id="1_rw3cs"]
+[ext_resource type="Script" uid="uid://bc0wuehu5qgga" path="res://micro_games/butter_toast/Scripts/butter.gd" id="2_61xe7"]
+[ext_resource type="Texture2D" uid="uid://bcdomyr3vva5" path="res://main/assets/pfp/dev-chan-pfp.png" id="2_648pp"]
+[ext_resource type="Texture2D" uid="uid://cfarn8jqlvmnf" path="res://micro_games/butter_toast/Assets/background.png" id="2_lseex"]
+[ext_resource type="Shader" uid="uid://b374iioygvmpj" path="res://micro_games/butter_toast/butter_shader.gdshader" id="3_8skc6"]
+[ext_resource type="Texture2D" uid="uid://c0l28knwck343" path="res://micro_games/butter_toast/Assets/hand.png" id="3_w1pus"]
+[ext_resource type="Texture2D" uid="uid://bd77kd30roam4" path="res://micro_games/butter_toast/Assets/bread.png" id="4_lseex"]
+[ext_resource type="Texture2D" uid="uid://c4wj5tro0ec60" path="res://micro_games/butter_toast/Assets/buttered_bread.png" id="5_64dpr"]
+[ext_resource type="Texture2D" uid="uid://bhk021u3rri20" path="res://micro_games/butter_toast/Assets/knife.png" id="8_64dpr"]
+[ext_resource type="Texture2D" uid="uid://dj475idht6b6e" path="res://micro_games/butter_toast/Assets/chunk.png" id="9_0cyyq"]
+[ext_resource type="Script" uid="uid://db1r3fmaa1ofa" path="res://micro_games/butter_toast/Scripts/knife.gd" id="9_k3e5c"]
+[ext_resource type="Texture2D" uid="uid://dc6ni8lqk04cc" path="res://micro_games/butter_toast/Assets/thumb.png" id="11_0cyyq"]
+[ext_resource type="Texture2D" uid="uid://bq5lsw8s1hsbx" path="res://micro_games/butter_toast/Assets/butter_bar.png" id="13_8vews"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8skc6"]
+shader = ExtResource("3_8skc6")
+shader_parameter/base_texture = ExtResource("4_lseex")
+shader_parameter/masked_texture = ExtResource("5_64dpr")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7e4vs"]
+bg_color = Color(0.6, 0.6, 0.6, 0.4627451)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_offset = Vector2(0.445, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8vews"]
+bg_color = Color(0.99607843, 0.9372549, 0.67058825, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="Curve" id="Curve_8skc6"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.982659, 0.4144811), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_w1pus"]
+colors = PackedColorArray(0.86898494, 0.8689849, 0.8689849, 1, 1, 1, 1, 1)
+
+[sub_resource type="Gradient" id="Gradient_0cyyq"]
+colors = PackedColorArray(0.427493, 0.42749307, 0.42749307, 1, 1, 1, 1, 1)
+
+[node name="ButterToast" type="Node2D" unique_id=575104083]
+script = ExtResource("1_rw3cs")
+grab_hand_pos = Vector2(1416.5, 903)
+control_format = 0
+lose_on_timeout = true
+post_game_time = 4.0
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1383711921]
+position = Vector2(960, 540)
+texture = ExtResource("2_lseex")
+
+[node name="Hand" type="Sprite2D" parent="." unique_id=28784079]
+unique_name_in_owner = true
+position = Vector2(1416.5, 1600)
+texture = ExtResource("3_w1pus")
+
+[node name="ButterTexture" type="TextureRect" parent="." unique_id=987569277]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_8skc6")
+offset_left = 581.0
+offset_top = 223.0
+offset_right = 1281.0
+offset_bottom = 935.0
+mouse_filter = 0
+texture = ExtResource("2_648pp")
+script = ExtResource("2_61xe7")
+mask_size = Vector2i(700, 712)
+
+[node name="ButteredProgress" type="ProgressBar" parent="." unique_id=117573517]
+unique_name_in_owner = true
+offset_left = 1828.5
+offset_top = 83.0
+offset_right = 1888.5
+offset_bottom = 752.0
+theme_override_styles/background = SubResource("StyleBoxFlat_7e4vs")
+theme_override_styles/fill = SubResource("StyleBoxFlat_8vews")
+fill_mode = 3
+show_percentage = false
+
+[node name="ButterParticles2" type="CPUParticles2D" parent="." unique_id=1205221104]
+unique_name_in_owner = true
+position = Vector2(1738, 692)
+amount = 20
+lifetime = 0.42
+explosiveness = 0.01
+emission_shape = 1
+emission_sphere_radius = 19.49
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 27.78
+initial_velocity_max = 116.67
+damping_min = 2.222
+damping_max = 5.556
+angle_min = -24.0
+angle_max = 24.0
+scale_amount_min = 17.67
+scale_amount_max = 23.52
+scale_amount_curve = SubResource("Curve_8skc6")
+color = Color(1, 0.9490196, 0.5647059, 1)
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+
+[node name="ButterParticles1" type="CPUParticles2D" parent="." unique_id=1887798605]
+unique_name_in_owner = true
+position = Vector2(1733, 547)
+amount = 20
+lifetime = 0.42
+explosiveness = 0.01
+emission_shape = 1
+emission_sphere_radius = 19.49
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 27.78
+initial_velocity_max = 116.67
+damping_min = 2.222
+damping_max = 5.556
+angle_min = -24.0
+angle_max = 24.0
+scale_amount_min = 17.67
+scale_amount_max = 23.52
+scale_amount_curve = SubResource("Curve_8skc6")
+color = Color(1, 0.9490196, 0.5647059, 1)
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+
+[node name="EatingButterParticles" type="CPUParticles2D" parent="." unique_id=2063169037]
+unique_name_in_owner = true
+position = Vector2(928, 1107)
+emitting = false
+amount = 10
+texture = ExtResource("9_0cyyq")
+lifetime = 1.05
+explosiveness = 0.84
+randomness = 0.17
+emission_shape = 1
+emission_sphere_radius = 19.49
+direction = Vector2(0, -1)
+spread = 41.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 316.67
+initial_velocity_max = 577.77
+angular_velocity_min = -104.0
+angular_velocity_max = 80.0
+radial_accel_min = 20.0
+radial_accel_max = 40.39
+damping_min = 340.0
+damping_max = 400.0
+angle_min = -24.0
+angle_max = 24.0
+scale_amount_min = 1.2
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_8skc6")
+color = Color(1, 0.9490196, 0.5647059, 1)
+color_initial_ramp = SubResource("Gradient_w1pus")
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+
+[node name="EatingDryParticles" type="CPUParticles2D" parent="." unique_id=1462639228]
+unique_name_in_owner = true
+position = Vector2(928, 1107)
+emitting = false
+amount = 12
+texture = ExtResource("9_0cyyq")
+lifetime = 1.05
+explosiveness = 0.84
+randomness = 0.17
+emission_shape = 1
+emission_sphere_radius = 19.49
+direction = Vector2(0, -1)
+spread = 41.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 350.0
+initial_velocity_max = 620.0
+angular_velocity_min = -104.0
+angular_velocity_max = 80.0
+radial_accel_min = 20.0
+radial_accel_max = 40.39
+damping_min = 440.0
+damping_max = 500.0
+angle_min = -24.0
+angle_max = 24.0
+scale_amount_min = 1.2
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_8skc6")
+color = Color(0.74462974, 0.5971835, 0.47773427, 1)
+color_initial_ramp = SubResource("Gradient_0cyyq")
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+
+[node name="SpittingDryParticles" type="CPUParticles2D" parent="." unique_id=1793272897]
+unique_name_in_owner = true
+position = Vector2(928, 1107)
+emitting = false
+amount = 25
+texture = ExtResource("9_0cyyq")
+lifetime = 1.05
+one_shot = true
+explosiveness = 0.97
+randomness = 0.17
+emission_shape = 1
+emission_sphere_radius = 19.49
+direction = Vector2(0, -1)
+spread = 20.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 1500.0
+initial_velocity_max = 3000.0
+angular_velocity_min = 248.0
+angular_velocity_max = 334.35
+radial_accel_min = 20.0
+radial_accel_max = 40.39
+damping_min = 550.0
+damping_max = 900.0
+angle_min = -24.0
+angle_max = 24.0
+scale_amount_min = 0.8
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_8skc6")
+color = Color(0.72544056, 0.5759097, 0.45761687, 1)
+color_initial_ramp = SubResource("Gradient_0cyyq")
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+
+[node name="Knife" type="TextureRect" parent="." unique_id=1384123310]
+unique_name_in_owner = true
+offset_left = 1337.0001
+offset_top = 232.00002
+offset_right = 1514.0001
+offset_bottom = 1132.0
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("8_64dpr")
+expand_mode = 1
+script = ExtResource("9_k3e5c")
+
+[node name="Butter1" type="Control" parent="Knife" unique_id=1822612797]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 0.286
+anchor_bottom = 0.034
+offset_left = 31.999842
+offset_top = 39.999977
+offset_right = 21.377838
+offset_bottom = 49.399975
+
+[node name="Butter2" type="Control" parent="Knife" unique_id=2106397376]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 0.286
+anchor_bottom = 0.034
+offset_left = 27.999796
+offset_top = 77.33329
+offset_right = 17.377792
+offset_bottom = 86.73329
+
+[node name="Butter3" type="Control" parent="Knife" unique_id=1738650407]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 0.286
+anchor_bottom = 0.034
+offset_left = 25.333126
+offset_top = 109.333336
+offset_right = 14.711128
+offset_bottom = 118.73334
+
+[node name="Butter4" type="Control" parent="Knife" unique_id=2016241915]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 0.286
+anchor_bottom = 0.034
+offset_left = 27.999838
+offset_top = 151.99995
+offset_right = 17.377838
+offset_bottom = 161.39995
+
+[node name="Thumb" type="Sprite2D" parent="." unique_id=1200118764]
+unique_name_in_owner = true
+position = Vector2(1416.5, 1600)
+texture = ExtResource("11_0cyyq")
+
+[node name="ButterBar" type="Sprite2D" parent="." unique_id=708383431]
+unique_name_in_owner = true
+position = Vector2(1857.5, 749)
+texture = ExtResource("13_8vews")
+
+[connection signal="gui_input" from="Knife" to="Knife" method="_on_gui_input"]
+[connection signal="mouse_entered" from="Knife" to="Knife" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Knife" to="Knife" method="_on_mouse_exited"]
