@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://c4wj5tro0ec60" path="res://micro_games/butter_toast/Assets/buttered_bread.png" id="5_64dpr"]
 [ext_resource type="Texture2D" uid="uid://bhk021u3rri20" path="res://micro_games/butter_toast/Assets/knife.png" id="8_64dpr"]
 [ext_resource type="Texture2D" uid="uid://dj475idht6b6e" path="res://micro_games/butter_toast/Assets/chunk.png" id="9_0cyyq"]
+[ext_resource type="Script" uid="uid://ds6h2sc2vtluu" path="res://micro_games/butter_toast/Scripts/shaker.gd" id="9_7e4vs"]
 [ext_resource type="Script" uid="uid://db1r3fmaa1ofa" path="res://micro_games/butter_toast/Scripts/knife.gd" id="9_k3e5c"]
 [ext_resource type="Texture2D" uid="uid://dc6ni8lqk04cc" path="res://micro_games/butter_toast/Assets/thumb.png" id="11_0cyyq"]
 [ext_resource type="Texture2D" uid="uid://bq5lsw8s1hsbx" path="res://micro_games/butter_toast/Assets/butter_bar.png" id="13_8vews"]
@@ -72,8 +73,17 @@ texture = ExtResource("2_648pp")
 script = ExtResource("2_61xe7")
 mask_size = Vector2i(700, 712)
 
-[node name="ButteredProgress" type="ProgressBar" parent="." unique_id=117573517]
+[node name="ProgressShaker" type="Control" parent="." unique_id=730590727]
 unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("9_7e4vs")
+
+[node name="ButteredProgress" type="ProgressBar" parent="ProgressShaker" unique_id=117573517]
+unique_name_in_owner = true
+layout_mode = 0
 offset_left = 1828.5
 offset_top = 83.0
 offset_right = 1888.5
@@ -85,7 +95,7 @@ show_percentage = false
 
 [node name="ButterParticles2" type="CPUParticles2D" parent="." unique_id=1205221104]
 unique_name_in_owner = true
-position = Vector2(1738, 692)
+position = Vector2(1368, 338)
 amount = 20
 lifetime = 0.42
 explosiveness = 0.01
@@ -108,7 +118,7 @@ hue_variation_max = 1.0
 
 [node name="ButterParticles1" type="CPUParticles2D" parent="." unique_id=1887798605]
 unique_name_in_owner = true
-position = Vector2(1733, 547)
+position = Vector2(1372, 274)
 amount = 20
 lifetime = 0.42
 explosiveness = 0.01
@@ -226,18 +236,27 @@ color_initial_ramp = SubResource("Gradient_0cyyq")
 hue_variation_min = -1.0
 hue_variation_max = 1.0
 
-[node name="Knife" type="TextureRect" parent="." unique_id=1384123310]
+[node name="Knife" type="Control" parent="." unique_id=774942729]
 unique_name_in_owner = true
-offset_left = 1337.0001
-offset_top = 232.00002
-offset_right = 1514.0001
-offset_bottom = 1132.0
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1303.0
+offset_top = 213.0
+offset_right = 1510.0
+offset_bottom = 928.0
+script = ExtResource("9_k3e5c")
+
+[node name="KnifeSprite" type="TextureRect" parent="Knife" unique_id=1384123310]
+layout_mode = 0
+offset_left = 34.000122
+offset_top = 19.000015
+offset_right = 211.00012
+offset_bottom = 919.0
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("8_64dpr")
 expand_mode = 1
-script = ExtResource("9_k3e5c")
 
-[node name="Butter1" type="Control" parent="Knife" unique_id=1822612797]
+[node name="Butter1" type="Control" parent="Knife/KnifeSprite" unique_id=1822612797]
 unique_name_in_owner = true
 layout_mode = 1
 anchor_right = 0.286
@@ -247,7 +266,7 @@ offset_top = 39.999977
 offset_right = 21.377838
 offset_bottom = 49.399975
 
-[node name="Butter2" type="Control" parent="Knife" unique_id=2106397376]
+[node name="Butter2" type="Control" parent="Knife/KnifeSprite" unique_id=2106397376]
 unique_name_in_owner = true
 layout_mode = 1
 anchor_right = 0.286
@@ -257,7 +276,7 @@ offset_top = 77.33329
 offset_right = 17.377792
 offset_bottom = 86.73329
 
-[node name="Butter3" type="Control" parent="Knife" unique_id=1738650407]
+[node name="Butter3" type="Control" parent="Knife/KnifeSprite" unique_id=1738650407]
 unique_name_in_owner = true
 layout_mode = 1
 anchor_right = 0.286
@@ -267,7 +286,7 @@ offset_top = 109.333336
 offset_right = 14.711128
 offset_bottom = 118.73334
 
-[node name="Butter4" type="Control" parent="Knife" unique_id=2016241915]
+[node name="Butter4" type="Control" parent="Knife/KnifeSprite" unique_id=2016241915]
 unique_name_in_owner = true
 layout_mode = 1
 anchor_right = 0.286
@@ -282,7 +301,16 @@ unique_name_in_owner = true
 position = Vector2(1416.5, 1600)
 texture = ExtResource("11_0cyyq")
 
-[node name="ButterBar" type="Sprite2D" parent="." unique_id=708383431]
+[node name="ButterShaker" type="Control" parent="." unique_id=1723124749]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("9_7e4vs")
+modifier = 1.2
+
+[node name="ButterBar" type="Sprite2D" parent="ButterShaker" unique_id=708383431]
 unique_name_in_owner = true
 position = Vector2(1857.5, 749)
 texture = ExtResource("13_8vews")

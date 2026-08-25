@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bcw7vgye3p114"
-path="res://.godot/imported/829d3a25-c796-4667-8411-e5d37dbdadfb.jpg-5271e36adedea5f79d7d2edc4174102d.ctex"
+uid="uid://buy4ccxuy1ok5"
+path="res://.godot/imported/mask.png-59ac938b7fde9a9dc67bd15fe6e96e17.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://micro_games/butter_toast/Assets/829d3a25-c796-4667-8411-e5d37dbdadfb.jpg"
-dest_files=["res://.godot/imported/829d3a25-c796-4667-8411-e5d37dbdadfb.jpg-5271e36adedea5f79d7d2edc4174102d.ctex"]
+source_file="res://micro_games/sort_watcards/Assets/mask.png"
+dest_files=["res://.godot/imported/mask.png-59ac938b7fde9a9dc67bd15fe6e96e17.ctex"]
 
 [params]
 

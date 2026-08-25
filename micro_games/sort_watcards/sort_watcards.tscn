@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://jsdmjcmshq34"]
+
+[ext_resource type="Script" uid="uid://cqwqgs50kawoj" path="res://micro_games/sort_watcards/Scripts/sort_watcards.gd" id="1_3q5ly"]
+[ext_resource type="Shader" uid="uid://bwib3bas2lpaw" path="res://micro_games/sort_watcards/outcome_shader.gdshader" id="4_aepeg"]
+[ext_resource type="Texture2D" uid="uid://buy4ccxuy1ok5" path="res://micro_games/sort_watcards/Assets/mask.png" id="5_k757a"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ueoph"]
+shader = ExtResource("4_aepeg")
+shader_parameter/mask_texture = ExtResource("5_k757a")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/intensity = 0.0
+
+[node name="SortWatcards" type="Node2D" unique_id=115960260]
+script = ExtResource("1_3q5ly")
+control_format = 0
+lose_on_timeout = true
+game_duration = 5.0
+metadata/_custom_type_script = "uid://c6chk3rdyriqb"
+
+[node name="FourthYearLabel" type="Label" parent="." unique_id=1616900722]
+offset_left = 1572.0
+offset_top = 778.0
+offset_right = 1842.0
+offset_bottom = 870.0
+theme_override_font_sizes/font_size = 67
+text = "Fake"
+
+[node name="FirstYearLabel" type="Label" parent="." unique_id=656856483]
+offset_left = 71.0
+offset_top = 754.0
+offset_right = 331.0
+offset_bottom = 846.0
+theme_override_font_sizes/font_size = 67
+text = "Real"
+
+[node name="FakeFlash" type="ColorRect" parent="." unique_id=1138364485]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_ueoph")
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+
+[node name="RealFlash" type="ColorRect" parent="." unique_id=246680126]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_ueoph")
+offset_left = 1920.0
+offset_top = 1080.0
+offset_right = 3840.0
+offset_bottom = 2160.0
+rotation = 3.1415927
+mouse_filter = 2

@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://c2hrn7e0o21qt"]
+
+[ext_resource type="Script" uid="uid://bywh7t1vmtx5k" path="res://micro_games/sort_watcards/Scripts/card.gd" id="1_q675k"]
+[ext_resource type="Texture2D" uid="uid://duerbuy35qlnh" path="res://micro_games/sort_watcards/Assets/watcard.png" id="2_7dqke"]
+
+[node name="Real" type="ColorRect" unique_id=1037461003]
+offset_right = 588.0
+offset_bottom = 321.0
+mouse_filter = 1
+color = Color(1, 1, 1, 0)
+script = ExtResource("1_q675k")
+
+[node name="Watcard" type="Sprite2D" parent="." unique_id=1668268232]
+position = Vector2(292.5285, 164.26294)
+scale = Vector2(1.1077232, 1.0763171)
+texture = ExtResource("2_7dqke")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

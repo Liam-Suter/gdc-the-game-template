@@ -26,7 +26,6 @@ func _ready():
 	butter_particles2.emitting = false;
 	prev_butter_positions.clear()
 	total_pixels = butter_size.x * butter_size.y
-	print("SCRIPT IS RUNNING")
 	# Start completely black
 	mask_image = Image.create(
 		mask_size.x,
@@ -41,26 +40,14 @@ func _ready():
 	knife.knife_moved.connect(_on_knife_moved)
 	
 	if butter_mat != null:
-		print("Setting param")
 		butter_mat.set_shader_parameter("mask_texture", mask_texture)
-	else:
-		print("N&ULL")
-	
 
-func _input(event):
-	if event is InputEventMouseMotion and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		butter_particles1.emitting = true
-		butter_particles2.emitting = true
-
-	elif event is InputEventMouseButton:
+func _input(event):		
+	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			prev_butter_positions.clear()
-		else:
-			butter_particles1.emitting = false
-			butter_particles2.emitting = false
 			
 func _on_knife_moved(points: Array[Vector2]):
-	print("knife moved")
 	var prev_exists = !prev_butter_positions.is_empty()
 	
 	for i in range(points.size()):
@@ -79,8 +66,7 @@ func _on_knife_moved(points: Array[Vector2]):
 
 func paint_mask(local_pos: Vector2, prev_pos: Vector2):
 	# Convert screen position to mask pixel coordinates.
-	print(local_pos)
-	
+	var pixels_added = false
 	var point_array = []
 	point_array.append(local_pos)
 	if (prev_pos != Vector2(-100, -100)):
@@ -112,9 +98,11 @@ func paint_mask(local_pos: Vector2, prev_pos: Vector2):
 					if col != Color.WHITE:
 						mask_image.set_pixel(px, py, Color.WHITE)
 						pixel_count += 1
+						pixels_added = true
 
 	# Push modified image to GPU texture
-	mask_texture.update(mask_image)
-	toast_buttered.emit(float(pixel_count) / float(total_pixels))
+	if pixels_added:
+		mask_texture.update(mask_image)
+		toast_buttered.emit(float(pixel_count) / float(total_pixels))
 	
 	

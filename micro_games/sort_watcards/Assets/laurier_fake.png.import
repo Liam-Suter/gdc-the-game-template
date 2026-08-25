@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dc130byrgw6xe"
-path="res://.godot/imported/0a283fd1-5007-4fc9-92d7-76aabcb8f6e7.jpg-bbccbe40776089df33a35e8adc92da92.ctex"
+uid="uid://eg2yrw7dqohy"
+path="res://.godot/imported/laurier_fake.png-26f1f6e2a94403754f3097ca0be7878e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://micro_games/butter_toast/Assets/0a283fd1-5007-4fc9-92d7-76aabcb8f6e7.jpg"
-dest_files=["res://.godot/imported/0a283fd1-5007-4fc9-92d7-76aabcb8f6e7.jpg-bbccbe40776089df33a35e8adc92da92.ctex"]
+source_file="res://micro_games/sort_watcards/Assets/laurier_fake.png"
+dest_files=["res://.godot/imported/laurier_fake.png-26f1f6e2a94403754f3097ca0be7878e.ctex"]
 
 [params]
 
