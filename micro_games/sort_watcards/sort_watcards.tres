@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="MicroGameInfo" format=3 uid="uid://b0hhq3wwifqvm"]
+
+[ext_resource type="PackedScene" uid="uid://jsdmjcmshq34" path="res://micro_games/sort_watcards/sort_watcards.tscn" id="1_avw4d"]
+[ext_resource type="Script" uid="uid://dciiueikp53p7" path="res://main/micro_game_info.gd" id="1_u7miv"]
+
+[resource]
+script = ExtResource("1_u7miv")
+title = "Sort Watcards"
+authors = "Juniper <3"
+instruction = "Sort the Watcards"
+game_scene = ExtResource("1_avw4d")
+width = 1920
+height = 1080
+control_format = 0
+metadata/_custom_type_script = "uid://dciiueikp53p7"

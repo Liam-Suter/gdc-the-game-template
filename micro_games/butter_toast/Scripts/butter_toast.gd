@@ -1,6 +1,6 @@
 extends MicroGame
 
-const GameSFX = preload("res://micro_games/midnight_deadline/Scripts/game_sfx.gd")
+const GameSFX = preload("res://micro_games/butter_toast/Scripts/game_sfx.gd")
 
 @export var grab_hand_pos := Vector2(0, 0)
 
@@ -9,6 +9,9 @@ const GameSFX = preload("res://micro_games/midnight_deadline/Scripts/game_sfx.gd
 @onready var butter_bar = %ButterBar
 @onready var hand = %Hand
 @onready var thumb = %Thumb
+
+@onready var progress_shaker = %ProgressShaker
+@onready var butter_shaker = %ButterShaker
 
 @onready var butter_particles = %EatingButterParticles
 @onready var dry_particles = %EatingDryParticles
@@ -32,14 +35,31 @@ func _on_start() -> void:
 	butter_painter.toast_buttered.connect(_on_toast_buttered)
 
 func _on_toast_buttered(percentage: float) -> void:
-	percentage *= 1.15
-	progress_bar.value = percentage * 100.0
-	butter_bar.position.y = progress_bar.position.y + clamp((1 - percentage), 0, 1) * progress_bar.size.y
-	if (percentage >= 1 && minigame_active):
-		win.emit()
+	if (randf() > 0.975):
+		play_knife_sfx()
+	percentage *= 1.12
+	
+	var progress_added = percentage - progress_bar.value / 100.0
+	
+	if minigame_active:
+		butter_shaker.add_intensity(progress_added * 2.5)
+		progress_shaker.add_intensity(progress_added * 2.5)
+		butter_shaker.set_static_intensity(percentage * 3)
+		progress_shaker.set_static_intensity(percentage * 3)
+		progress_bar.value = percentage * 100.0
+		butter_bar.position.y = progress_bar.position.y + clamp((1 - percentage), 0, 1) * progress_bar.size.y
+		if (percentage >= 1 && minigame_active):
+			win.emit()
 		
+func play_knife_sfx() -> void:
+	var sfx_str = "res://micro_games/butter_toast/Assets/toast%d.wav" % randi_range(1, 8)
+	GameSFX.play(self, sfx_str, 0.2)
+
 func _on_win() -> void:
+	GameSFX.play(self, "res://micro_games/butter_toast/Assets/oven_ding.wav", -1)
 	minigame_active = false
+	butter_shaker.convert_static_to_dynamic()
+	progress_shaker.convert_static_to_dynamic()
 	grab_toast(true)
 	
 func grab_toast(buttered: bool):

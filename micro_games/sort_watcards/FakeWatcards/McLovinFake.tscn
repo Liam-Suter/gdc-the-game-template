@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bheerc4jmxgj5"]
+
+[ext_resource type="Script" uid="uid://bywh7t1vmtx5k" path="res://micro_games/sort_watcards/Scripts/card.gd" id="1_akfhc"]
+[ext_resource type="Texture2D" uid="uid://bcgmikta534ok" path="res://micro_games/sort_watcards/Assets/mcLovin.png" id="2_akfhc"]
+
+[node name="Fake" type="ColorRect" unique_id=1037461003]
+offset_right = 588.0
+offset_bottom = 321.0
+mouse_filter = 1
+color = Color(1, 1, 1, 0)
+script = ExtResource("1_akfhc")
+real = false
+
+[node name="LaurierFake" type="Sprite2D" parent="." unique_id=1668268232]
+position = Vector2(294.88, 161.25002)
+scale = Vector2(0.5465185, 0.471935)
+texture = ExtResource("2_akfhc")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
