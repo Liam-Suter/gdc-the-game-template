@@ -1,5 +1,6 @@
 extends Control
 
+const GameSFX = preload("res://micro_games/sort_watcards/Scripts/game_sfx.gd")
 
 @export var real := true
 @export var target_position := Vector2(1673, 800)
@@ -58,6 +59,9 @@ func _input(event):
 		held_mouse_pos = event.position
 		
 		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and hovered:
+			var tween = create_tween()
+			tween.tween_property(self, "scale", Vector2(1.1, 0.9), 0.03)
+			tween.tween_property(self, "scale", Vector2(1, 1.15), 0.035)
 			holding = true
 			target_pos = self.position
 			offset = held_mouse_pos - target_pos
@@ -66,21 +70,27 @@ func _input(event):
 			if prev_mouse_pos != null:
 				#Check if we satisfy flick condition
 				if (held_mouse_pos - (self.position + offset)).length() > 90:
+					var tween = create_tween()
+					tween.tween_property(self, "scale", Vector2(1.05, 1.05), 0.06)
 					flick()
+					return
+			var tween = create_tween()
+			tween.tween_property(self, "scale", Vector2(1.1, 1.1), 0.05)
 
 func flick() -> void:
+	GameSFX.play(self, "res://micro_games/sort_watcards/Assets/cardFlick.wav", 1, randf_range(0.85, 1.15))
 	disable_interaction()
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	#Toss fakes to the right, real to the left
 	correct_sort = (held_mouse_pos - (self.position + offset)).x > 0 == !real
-	print(correct_sort)
+	#print(correct_sort)
 	
 	var angle = clamp(
 	Vector2(0, -1).angle_to(held_mouse_pos - self.position + offset),
 	0.0,
 	PI / 2.0
 )
-	print("ANGLE TO: ", rad_to_deg(angle))
+	#print("ANGLE TO: ", rad_to_deg(angle))
 	velocity = calculate_velocity(self.position, target_position, 90-angle, 2500)
 	velocity = (held_mouse_pos - (self.position + offset)) * 2.5
 	
@@ -95,7 +105,7 @@ func calculate_velocity(start: Vector2, target: Vector2, angle: float, gravity: 
 	var vy := -vx * tan(angle)
 
 	var velocity := Vector2(vx, vy)
-	print(velocity)
+	#print(velocity)
 	return velocity
 
 

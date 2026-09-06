@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bslrx1eurrqwd"]
+
+[ext_resource type="Script" uid="uid://bywh7t1vmtx5k" path="res://micro_games/sort_watcards/Scripts/card.gd" id="1_i5lfa"]
+[ext_resource type="Texture2D" uid="uid://cl238owhp4vee" path="res://micro_games/sort_watcards/Assets/bad_arts.png" id="2_i5lfa"]
+[ext_resource type="Texture2D" uid="uid://dhr64sahhnvj1" path="res://micro_games/sort_watcards/Assets/laurier_blank_fake.png" id="3_hfqeq"]
+
+[node name="Fake" type="ColorRect" unique_id=1037461003]
+offset_right = 588.0
+offset_bottom = 321.0
+mouse_filter = 1
+color = Color(1, 1, 1, 0)
+script = ExtResource("1_i5lfa")
+real = false
+
+[node name="BadMath" type="Sprite2D" parent="." unique_id=215137334]
+texture_filter = 2
+position = Vector2(104, 222)
+scale = Vector2(0.39166665, 0.39166668)
+texture = ExtResource("2_i5lfa")
+
+[node name="LaurierFake" type="Sprite2D" parent="." unique_id=1668268232]
+position = Vector2(295.75, 159.75)
+scale = Vector2(2.2452471, 1.9424243)
+texture = ExtResource("3_hfqeq")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

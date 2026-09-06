@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://jsdmjcmshq34"]
 
 [ext_resource type="Script" uid="uid://cqwqgs50kawoj" path="res://micro_games/sort_watcards/Scripts/sort_watcards.gd" id="1_3q5ly"]
+[ext_resource type="FontFile" uid="uid://k63t7wblivm1" path="res://shared/fonts/BoldsPixels.ttf" id="2_7bnwc"]
+[ext_resource type="Texture2D" uid="uid://bm52a4p4xsq14" path="res://micro_games/sort_watcards/Assets/arrows.png" id="2_aepeg"]
 [ext_resource type="Shader" uid="uid://bwib3bas2lpaw" path="res://micro_games/sort_watcards/outcome_shader.gdshader" id="4_aepeg"]
 [ext_resource type="Texture2D" uid="uid://buy4ccxuy1ok5" path="res://micro_games/sort_watcards/Assets/mask.png" id="5_k757a"]
 
@@ -14,22 +16,49 @@ shader_parameter/intensity = 0.0
 script = ExtResource("1_3q5ly")
 control_format = 0
 lose_on_timeout = true
-game_duration = 5.0
+game_duration = 6.5
+post_game_time = 0.5
 metadata/_custom_type_script = "uid://c6chk3rdyriqb"
 
-[node name="FourthYearLabel" type="Label" parent="." unique_id=1616900722]
-offset_left = 1572.0
-offset_top = 778.0
-offset_right = 1842.0
-offset_bottom = 870.0
+[node name="ColorRect" type="ColorRect" parent="." unique_id=526718641]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.9691369, 0.9691369, 0.9691368, 1)
+
+[node name="Test2" type="Sprite2D" parent="." unique_id=1044964224]
+texture_filter = 1
+position = Vector2(1730, 960)
+rotation = 3.1415927
+scale = Vector2(3.6, 3.6)
+texture = ExtResource("2_aepeg")
+
+[node name="FourthYearLabel" type="Label" parent="Test2" unique_id=1616900722]
+offset_left = 62.500023
+offset_top = 13.0555725
+offset_right = 332.50003
+offset_bottom = 105.05557
+rotation = 3.1415927
+scale = Vector2(0.278, 0.278)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_7bnwc")
 theme_override_font_sizes/font_size = 67
 text = "Fake"
+metadata/_edit_use_anchors_ = true
 
-[node name="FirstYearLabel" type="Label" parent="." unique_id=656856483]
-offset_left = 71.0
-offset_top = 754.0
-offset_right = 331.0
-offset_bottom = 846.0
+[node name="Test" type="Sprite2D" parent="." unique_id=874182944]
+texture_filter = 1
+position = Vector2(230, 940)
+scale = Vector2(3.6, 3.6)
+texture = ExtResource("2_aepeg")
+
+[node name="FirstYearLabel" type="Label" parent="Test" unique_id=656856483]
+offset_left = 34.444443
+offset_top = -4.7222233
+offset_right = 294.44446
+offset_bottom = 87.27778
+scale = Vector2(0.278, 0.278)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_7bnwc")
 theme_override_font_sizes/font_size = 67
 text = "Real"
 

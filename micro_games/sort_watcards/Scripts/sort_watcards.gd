@@ -1,13 +1,31 @@
 extends MicroGame
 
-const GameSFX = preload("res://micro_games/butter_toast/Scripts/game_sfx.gd")
+const GameSFX = preload("res://micro_games/sort_watcards/Scripts/game_sfx.gd")
 
 var mc_lovin = preload("res://micro_games/sort_watcards/FakeWatcards/McLovinFake.tscn")
-var laurier = preload("res://micro_games/sort_watcards/FakeWatcards/Fake.tscn")
-var real = preload("res://micro_games/sort_watcards/RealWatcards/Real.tscn")
+var math_fake = preload("res://micro_games/sort_watcards/FakeWatcards/MathFake.tscn")
+var eng_fake = preload("res://micro_games/sort_watcards/FakeWatcards/EngFake.tscn")
+var env_fake = preload("res://micro_games/sort_watcards/FakeWatcards/EnvFake.tscn")
+var art_fake = preload("res://micro_games/sort_watcards/FakeWatcards/ArtsFake.tscn")
+var sci_fake = preload("res://micro_games/sort_watcards/FakeWatcards/SciFake.tscn")
+var health_fake = preload("res://micro_games/sort_watcards/FakeWatcards/HealthFake.tscn")
+var dev_fake = preload("res://micro_games/sort_watcards/FakeWatcards/DevFake.tscn")
 
-var fake_cards = [mc_lovin, laurier]
-var real_cards = [real]
+var math = preload("res://micro_games/sort_watcards/RealWatcards/MathWatcard.tscn")
+var eng = preload("res://micro_games/sort_watcards/RealWatcards/EngWatcard.tscn")
+var env = preload("res://micro_games/sort_watcards/RealWatcards/EnvWatcard.tscn")
+var art = preload("res://micro_games/sort_watcards/RealWatcards/ArtsWatcard.tscn")
+var sci = preload("res://micro_games/sort_watcards/RealWatcards/SciWatcard.tscn")
+var health = preload("res://micro_games/sort_watcards/RealWatcards/HealthWatcard.tscn")
+var goose = preload("res://micro_games/sort_watcards/RealWatcards/MrGooseWatcard.tscn")
+var dev_happy = preload("res://micro_games/sort_watcards/RealWatcards/DevHappyWatcard.tscn")
+var dev_sad = preload("res://micro_games/sort_watcards/RealWatcards/DevSadWatcard.tscn")
+var fake_cards = [mc_lovin, math_fake, eng_fake, env_fake, art_fake, sci_fake, health_fake, dev_fake]
+var real_cards = [math, eng, env, art, sci, health, goose, dev_happy, dev_sad]
+
+
+var left_timestamp = 0
+var right_timestamp = 0
 
 @onready var real_flash := %RealFlash.material as ShaderMaterial
 @onready var fake_flash := %FakeFlash.material as ShaderMaterial
@@ -31,15 +49,27 @@ func _on_start() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
 	var inst_spawn_locs = spawn_locs.duplicate()
+	var fake_cards_inst = fake_cards.duplicate()
+	var real_cards_inst = real_cards.duplicate()
+	
+	var num_real_cards = randi_range(3, 6)
+	var num_fake_cards = 9-num_real_cards;
+	
 	for i in range(inst_spawn_locs.size()):
 		var index = randi_range(0, inst_spawn_locs.size()-1)
 		var inst
 		
-		if (randi_range(0, 1) == 0):
-			pass
-			inst = fake_cards[randi_range(0, fake_cards.size()-1)].instantiate()
+		if (num_fake_cards > 0):
+			num_fake_cards -= 1
+			if fake_cards_inst.size() == 0: fake_cards_inst = fake_cards.duplicate()
+			var fake_index = randi_range(0, fake_cards_inst.size()-1)
+			inst = fake_cards_inst[fake_index].instantiate()
+			fake_cards_inst.remove_at(fake_index)
 		else:
-			inst = real_cards[randi_range(0, real_cards.size()-1)].instantiate()
+			if real_cards_inst.size() == 0: real_cards_inst = real_cards.duplicate()
+			var real_index = randi_range(0, real_cards_inst.size()-1)
+			inst = real_cards_inst[real_index].instantiate()
+			real_cards_inst.remove_at(real_index)
 		
 		if inst != null:
 			add_child(inst)
@@ -58,37 +88,43 @@ func _on_start() -> void:
 
 func _on_card_sorted(left: bool, correct: bool) -> void:	
 	if left:
-		flash(real_flash, correct)
+		flash(real_flash, correct, left)
 	else:
-		flash(fake_flash, correct)
+		flash(fake_flash, correct, left)
 		
 	if !correct && minigame_active:
 		lose.emit()
-		minigame_active = false
 		
 	if correct && minigame_active:
 		num_cards_sorted += 1
-		print(num_cards_sorted)
 		if num_cards_sorted == 9:
+			GameSFX.play(self, "res://micro_games/sort_watcards/Assets/correct.wav")
 			win.emit()
 			minigame_active = false
-	
 
-func flash(mat: ShaderMaterial, correct: bool) -> void:
+func _on_lose():
+	minigame_active = false
+	GameSFX.play(self, "res://micro_games/sort_watcards/Assets/badSort.wav")
+
+func flash(mat: ShaderMaterial, correct: bool, left: bool) -> void:
 	var time = 0
+	
+	if left:
+		left_timestamp = Time.get_unix_time_from_system()
+	else:
+		right_timestamp = Time.get_unix_time_from_system()
+	var start_timestamp = left_timestamp if left else right_timestamp
 	
 	mat.set_shader_parameter("color", Vector3(0, 1, 0) if correct else Vector3(1, 0, 0))
 	
 	while (time < 0.25):
+		if start_timestamp != (left_timestamp if left else right_timestamp): return
 		mat.set_shader_parameter("intensity", 0.12 * pow(sin(1 + time*6), 15))
 		await get_tree().process_frame
 		time += get_process_delta_time()
 	mat.set_shader_parameter("intensity", 0)
 
 func _on_win() -> void:
-	minigame_active = false
-	
-func _on_lose() -> void:
 	minigame_active = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
